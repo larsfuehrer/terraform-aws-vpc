@@ -1,6 +1,7 @@
 variable "cidr_block" {
   type        = string
   description = "IPv4 CIDR to assign to the VPC"
+  default     = ""
 }
 
 variable "additional_cidr_blocks" {
@@ -17,6 +18,12 @@ variable "instance_tenancy" {
     condition     = contains(["default", "dedicated", "host"], var.instance_tenancy)
     error_message = "Instance tenancy must be one of \"default\", \"dedicated\", or \"host\"."
   }
+}
+
+variable "ipv4_ipam_pool_id" {
+  type        = string
+  description = "VPC IPAM pool id"
+  default     = ""
 }
 
 variable "dns_hostnames_enabled" {
